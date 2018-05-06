@@ -16,12 +16,19 @@ env:
     - BINARYBUILDER_DOWNLOADS_CACHE=downloads
     - BINARYBUILDER_AUTOMATIC_APPLE=false
 sudo: required
-
-# Before anything else, get the latest versions of things
 before_script:
   - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
   - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
-
 script:
   - julia build_tarballs.jl
 
+deploy:
+  provider: releases
+  api_key:
+    secure: AuJ2AP3jM75+anu9A2Lm51iy2D7WkOFVuqenZXrmE/bip1ZxFoWRlFzjKLBW1o8aWvU0M62CR0It8YfS3HeXLUBjYi9PReuxvlGck3asKhLLUzPsUqzatFQpaQ/mRWNxtufje5CCq3oJz4OEPSVEn5DipfGOaXc/I1cYdNQovdy/PlcM7MmQAg9n+Qx+bI715MTYu8N51DmP6FcgZS4iiv4J9D1now3iZMYtUxGN+r0EHNxeU+4JgILH6ClM//KX1Bk9q26PkqjqeevGpiBdn2CRqY1THzaTvI25XDweTgHsm8yzLegsTZ6P2AAMi3Z2uvBSQaofULBLkkMivByfeuNQUi4ef0PGAiOwAWWooLIOTPfobtDQogJhFmmg165sPl03V5Df/4kOdNkbEccLiWgUbaeYf3CYU9FtoS3d1zRthSxjrmOo30j6j3m7WiWe0TfLo42F/dYecCgqeSE/vWsZI2ZLVT8LlHe0KJbwCGn28STTWN0dKMdakz4HNkrWIK1G2ulAIWwXIz3igXLD6R9+fcYz4YwJFyqSJsDgHNpr8UBDBkATSuXFcMdARogefIMzkKcLbmekpQB8Xbviek+PVA+RLFPWNE6gsi61WAwz9Of3UfQdWNpKwc9DV6IlM9hQ5k8bKuk9m/d+eohmjMXs9IwVV6cTgLk2NZXGZJg=
+  file_glob: true
+  file: products/*
+  skip_cleanup: true
+  on:
+    repo: evetion/LASzipBuilder
+    tags: true
