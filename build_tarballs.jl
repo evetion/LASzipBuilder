@@ -26,9 +26,9 @@ make install
 platforms = [
     BinaryProvider.Linux(:i686, :glibc),
     BinaryProvider.Linux(:x86_64, :glibc),
-    BinaryProvider.MacOS(),
-    BinaryProvider.Windows(:i686),
-    BinaryProvider.Windows(:x86_64)
+    # BinaryProvider.MacOS(),
+    # BinaryProvider.Windows(:i686),
+    # BinaryProvider.Windows(:x86_64)
 ]
 
 # The products that we will ensure are always built
