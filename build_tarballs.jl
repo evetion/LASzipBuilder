@@ -20,7 +20,6 @@ cmake --build . --target install --config Release
 
 if [ $target = "x86_64-w64-mingw32" ] || [ $target = "i686-w64-mingw32" ]; then
 mv $prefix/bin/liblaszip3.dll $prefix/bin/liblaszip.dll
-mv $prefix/bin/liblaszip_api3.dll $prefix/bin/liblaszip_api.dll
 
 
 fi
@@ -40,7 +39,6 @@ platforms = [
 # The products that we will ensure are always built
 products(prefix) = [
     LibraryProduct(prefix, "liblaszip", :liblaszip),
-    LibraryProduct(prefix, "liblaszip_api", :liblaszip_api)
 ]
 
 # Dependencies that must be installed before this package can be built
